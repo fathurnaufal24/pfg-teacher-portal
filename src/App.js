@@ -8,6 +8,9 @@ import ClassOffering from './ClassOffering';
 import MySchedule from './MySchedule';
 import ClassManagement from './ClassManagement';
 import Module from './Module';
+import ClassRoom from './ClassRoom';
+import Notifications from './Notifications';
+import ParentMeeting from './ParentMeeting';
 
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
           <Route path="/myschedule" element={<MySchedule />} />
           <Route path="/classmanagement" element={<ClassManagement />} />
           <Route path="/module" element={<Module />} />
+          <Route path="/classroom" element={<ClassRoom />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/parentmeeting" element={<ParentMeeting />} />
         </Routes>
       </div>
     </Router>
