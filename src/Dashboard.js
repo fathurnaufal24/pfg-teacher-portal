@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import teacherIllustration from './icon-guru.png';
 
 const Dashboard = () => {
   return (
@@ -10,12 +11,13 @@ const Dashboard = () => {
         
         {/* Welcome Card */}
         <div className="flex-1 bg-white p-8 rounded-3xl shadow-sm flex items-start space-x-6 relative">
-          <div className="hidden sm:block w-32">
-            <img src="https://via.placeholder.com/150" alt="Teacher Illustration" className="w-full" />
+          {/* 2. PAKE TAG <img> DI SINI */}
+          <div className="hidden sm:block w-32 flex-shrink-0">
+            <img src={teacherIllustration} alt="Teacher" className="w-full h-auto object-contain" />
           </div>
           
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome Hadi Alhail, M.Pd.</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome Fathurrahman Naufal, M.kom.</h1>
             <p className="text-gray-600 leading-relaxed mb-4">
               Remember to begin your day with Bismillah. Also, your performance score has now 
               reached <span className="bg-red-500 text-white px-2 py-0.5 rounded-md font-bold">61.19%</span> out of the 75% standard. 

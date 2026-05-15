@@ -1,11 +1,12 @@
 import React from 'react';
+import logoPFG from './logo-pfg.jpeg'; // Sesuaikan nama filenya
 import { 
   LayoutDashboard, Users, Wallet, Calendar, 
-  BookOpen, Gift, Bell, UserPlus, LogOut 
-} from 'lucide-react'; // Tambahin Bell & UserPlus
+  BookOpen, Gift, Bell, UserPlus, LogOut, X 
+} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
   const location = useLocation();
 
   const menus = [
@@ -15,40 +16,63 @@ const Sidebar = () => {
     { name: "My Schedule", icon: <Calendar size={20} />, path: "/myschedule" },
     { name: "Module", icon: <BookOpen size={20} />, path: "/module" },
     { name: "Class Offering", icon: <Gift size={20} />, path: "/classoffering" },
-    // TAMBAHIN DUA INI BANG:
     { name: "Notifications", icon: <Bell size={20} />, path: "/notifications" },
     { name: "Parent Meeting", icon: <UserPlus size={20} />, path: "/parentmeeting" },
   ];
 
   return (
-    <div className="w-64 bg-white h-screen shadow-xl p-6 hidden md:block flex flex-col">
-      <div className="flex items-center space-x-2 mb-10">
-        <div className="w-8 h-8 bg-emerald-500 rounded-full"></div>
-        <h1 className="text-xl font-bold text-gray-800 tracking-tight">PFG Portal</h1>
-      </div>
-      
-      <nav className="space-y-1 flex-1">
-        {menus.map((menu) => (
-          <Link 
-            key={menu.name} 
-            to={menu.path} 
-            className={`flex items-center space-x-3 p-3 rounded-xl transition font-medium ${
-              location.pathname === menu.path 
-              ? 'bg-emerald-50 text-emerald-600' 
-              : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'
-            }`}
-          >
-            {menu.icon}
-            <span className="text-sm">{menu.name}</span>
-          </Link>
-        ))}
-      </nav>
+    <>
+      {/* Overlay: Layar item transparan pas Sidebar muncul di HP */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
 
-      <div className="pt-10 flex items-center space-x-3 p-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition">
-        <LogOut size={20} />
-        <span className="text-sm">Logout</span>
+      {/* Sidebar Utama */}
+      <div className={`
+        fixed md:static inset-y-0 left-0 z-50
+        w-64 bg-white h-screen shadow-xl p-6 
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:translate-x-0 flex flex-col
+      `}>
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center space-x-2">
+            <img src={logoPFG} alt="Logo PFG" className="w-12 h-12 object-contain" />
+            <h1 className="text-xl font-bold text-gray-800 tracking-tight">PFG Portal</h1>
+          </div>
+          {/* Tombol Close cuma muncul di HP */}
+          <button onClick={() => setIsOpen(false)} className="md:hidden text-gray-500">
+            <X size={24} />
+          </button>
+        </div>
+        
+        <nav className="space-y-1 flex-1 overflow-y-auto">
+          {menus.map((menu) => (
+            <Link 
+              key={menu.name} 
+              to={menu.path} 
+              onClick={() => setIsOpen(false)} // Klik menu = Sidebar tutup di HP
+              className={`flex items-center space-x-3 p-3 rounded-xl transition font-medium ${
+                location.pathname === menu.path 
+                ? 'bg-emerald-50 text-emerald-600' 
+                : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'
+              }`}
+            >
+              {menu.icon}
+              <span className="text-sm">{menu.name}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="pt-10 flex items-center space-x-3 p-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition">
+          <LogOut size={20} />
+          <span className="text-sm">Logout</span>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
