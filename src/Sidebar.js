@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const menus = ["Dashboard", "Class Management", "Revenue", "My Schedule", "Module", "Class Offering"];
@@ -7,9 +8,11 @@ const Sidebar = () => {
       <h1 className="text-2xl font-bold text-emerald-600 mb-10">PFG Portal</h1>
       <nav className="space-y-4">
         {menus.map((menu) => (
-          <div key={menu} className="text-gray-600 hover:text-emerald-500 cursor-pointer font-medium py-2">
-            {menu}
-          </div>
+          <Link to={menu === "Dashboard" ? "/" : `/${menu.toLowerCase().replace(" ", "")}`}>
+  <div className="text-gray-600 hover:text-emerald-500 cursor-pointer font-medium py-2">
+    {menu}
+  </div>
+</Link>
         ))}
       </nav>
       <div className="mt-20 text-red-500 font-bold cursor-pointer">Logout</div>
