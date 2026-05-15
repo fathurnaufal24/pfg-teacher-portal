@@ -4,6 +4,11 @@ import Sidebar from './Sidebar';
 import Dashboard from './Dashboard';
 import Profile from './Profile';
 import Revenue from './Revenue';
+import ClassOffering from './ClassOffering';
+import MySchedule from './MySchedule';
+import ClassManagement from './ClassManagement';
+import Module from './Module';
+
 
 function App() {
   return (
@@ -14,6 +19,10 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/revenue" element={<Revenue />} />
+          <Route path="/classoffering" element={<ClassOffering />} />
+          <Route path="/myschedule" element={<MySchedule />} />
+          <Route path="/classmanagement" element={<ClassManagement />} />
+          <Route path="/module" element={<Module />} />
         </Routes>
       </div>
     </Router>

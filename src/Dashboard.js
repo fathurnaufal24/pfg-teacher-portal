@@ -1,52 +1,123 @@
 import React from 'react';
+import { Star, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 const Dashboard = () => {
   return (
-    <div className="flex-1 p-8">
-      <h2 className="text-2xl font-bold mb-6">Welcome Hadi Alhail, M.Pd.</h2> {/* [cite: 4, 83] */}
+    <div className="flex-1 p-6 bg-[#F3F4F9] min-h-screen font-sans">
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        {/* Performance Card */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border-l-8 border-red-500">
-          <p className="text-gray-400 font-semibold">Teacher Performance</p>
-          <h3 className="text-4xl font-bold text-red-500">61.19%</h3> {/*  */}
-          <p className="text-xs text-gray-400 mt-1 text-wrap">Reached 61.19% out of 75% standard. [cite: 5, 84]</p>
+      {/* HEADER SECTION */}
+      <div className="flex flex-col lg:flex-row gap-4 mb-6">
+        
+        {/* Welcome Card */}
+        <div className="flex-1 bg-white p-8 rounded-3xl shadow-sm flex items-start space-x-6 relative">
+          <div className="hidden sm:block w-32">
+            <img src="https://via.placeholder.com/150" alt="Teacher Illustration" className="w-full" />
+          </div>
+          
+          <div className="flex-1">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">Welcome Hadi Alhail, M.Pd.</h1>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Remember to begin your day with Bismillah. Also, your performance score has now 
+              reached <span className="bg-red-500 text-white px-2 py-0.5 rounded-md font-bold">61.19%</span> out of the 75% standard. 
+              Feel free to share this with the Super Teacher or the Curriculum Team. Insya Allah, it will become green! 
+              May your study session go well, keep the spirit high!
+            </p>
+            <button className="bg-[#D4B982] text-white px-6 py-2 rounded-xl font-bold shadow-sm hover:bg-[#c4a972] transition">
+              Mood Booster
+            </button>
+          </div>
         </div>
 
-        {/* Rating Card */}
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <p className="text-gray-400 font-semibold">Ranting: 4</p> {/* [cite: 12, 53, 94] */}
-          <div className="text-yellow-400 text-2xl mt-2">★★★★☆</div>
-        </div>
+        {/* Performance & Rating Sidebar */}
+        <div className="w-full lg:w-72 bg-white p-6 rounded-3xl shadow-sm">
+          <h3 className="font-bold text-gray-700 mb-4 text-center">Teacher Performance</h3>
+          <div className="bg-red-500 text-white text-center py-2 rounded-lg font-bold text-xl mb-4">
+            61.19 %
+          </div>
+          
+          <div className="space-y-2 mb-6 text-sm font-medium">
+            <div className="flex items-center space-x-2 text-emerald-500">
+              <div className="w-4 h-4 bg-emerald-500 rounded-sm"></div>
+              <span>High Performance</span>
+            </div>
+            <div className="flex items-center space-x-2 text-yellow-500">
+              <div className="w-4 h-4 bg-yellow-500 rounded-sm"></div>
+              <span>Medium Performance</span>
+            </div>
+            <div className="flex items-center space-x-2 text-red-500">
+              <div className="w-4 h-4 bg-red-500 rounded-sm"></div>
+              <span>Low Performance</span>
+            </div>
+          </div>
 
-        {/* Mood Booster */}
-        <div className="bg-amber-100 p-6 rounded-xl shadow-sm flex items-center justify-center">
-          <button className="bg-amber-400 text-white px-6 py-2 rounded-lg font-bold shadow-md">Mood Booster</button> {/* [cite: 21, 88] */}
+          <div className="border-t pt-4">
+            <p className="font-bold text-gray-700 mb-2">Ranting: 4</p>
+            <div className="flex space-x-1">
+              {[...Array(4)].map((_, i) => <Star key={i} fill="#FACC15" color="#FACC15" size={20} />)}
+              <Star color="#D1D5DB" size={20} />
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Pending Attendance Table */}
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="p-4 bg-gray-50 border-b font-bold text-red-500">Pending Attendance</div> {/* [cite: 13, 87] */}
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-4">No</th>
-              <th className="p-4">Class</th>
-              <th className="p-4">Session</th>
-              <th className="p-4">Schedule</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b">
-              <td className="p-4">1</td>
-              <td className="p-4 text-blue-600 font-medium">ILC - 2.1 (Private) - Lv 3</td> {/* [cite: 19] */}
-              <td className="p-4">2</td> {/* [cite: 20] */}
-              <td className="p-4 text-gray-500">Rabu, 4 Maret 2026 (19.00 WIB)</td> {/* [cite: 22] */}
-            </tr>
-          </tbody>
-        </table>
+      {/* PENDING ATTENDANCE SECTION */}
+      <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
+        <div className="p-6 flex justify-between items-center border-b border-gray-100">
+          <h2 className="text-red-500 font-bold text-xl flex items-center">
+            Pending Attendance <span className="ml-2 text-gray-400">🕒</span>
+          </h2>
+          <div className="relative">
+            <Search className="absolute left-3 top-2.5 text-gray-300" size={18} />
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className="pl-10 pr-4 py-2 border border-gray-100 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-64"
+            />
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-gray-50 text-gray-400 text-sm uppercase">
+              <tr>
+                <th className="p-6">No</th>
+                <th className="p-6">Class</th>
+                <th className="p-6">Session</th>
+                <th className="p-6">Session Schedule</th>
+                <th className="p-6"></th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-700">
+              <tr className="border-b border-gray-50 hover:bg-gray-50 transition">
+                <td className="p-6 font-bold">1</td>
+                <td className="p-6 text-blue-500 font-semibold">ILC - 2.1 (Private) - Lv 3</td>
+                <td className="p-6">2</td>
+                <td className="p-6">Rabu, 4 Maret 2026 (19.00 WIB)</td>
+                <td className="p-6 text-right">
+                  <button className="bg-[#D4B982] text-white px-4 py-1.5 rounded-lg text-sm font-bold shadow-sm">
+                    Detail
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination Section */}
+        <div className="p-6 flex justify-end items-center space-x-4 text-gray-400">
+          <div className="flex items-center space-x-2">
+            <button className="hover:text-emerald-500"><ChevronsLeft size={20} /></button>
+            <button className="hover:text-emerald-500"><ChevronLeft size={20} /></button>
+            <span className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-emerald-600 font-bold">1</span>
+            <button className="hover:text-emerald-500"><ChevronRight size={20} /></button>
+            <button className="hover:text-emerald-500"><ChevronsRight size={20} /></button>
+          </div>
+          <select className="border rounded-lg px-2 py-1 bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500 text-sm">
+            <option>5 v</option>
+          </select>
+        </div>
       </div>
+
     </div>
   );
 };
