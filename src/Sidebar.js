@@ -1,5 +1,5 @@
 import React from 'react';
-import logoPFG from './logo-pfg.jpeg'; // Sesuaikan nama filenya
+import logoPFG from './logo-sidebar.png'; // Sesuaikan nama filenya
 import { 
   LayoutDashboard, Users, Wallet, Calendar, 
   BookOpen, Gift, Bell, UserPlus, LogOut, X 
@@ -33,7 +33,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
       {/* Sidebar Utama */}
       <div className={`
         fixed md:static inset-y-0 left-0 z-50
-        w-64 bg-white h-screen shadow-xl p-6 
+        w-64 bg-[#1E293B] h-screen shadow-xl p-6 
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? "translate-x-0" : "-translate-x-full"} 
         md:translate-x-0 flex flex-col
@@ -41,7 +41,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center space-x-2">
             <img src={logoPFG} alt="Logo PFG" className="w-12 h-12 object-contain" />
-            <h1 className="text-xl font-bold text-gray-800 tracking-tight">PFG Portal</h1>
+            <h1 className="text-xl font-bold text-white tracking-tight">PFG Portal</h1>
           </div>
           {/* Tombol Close cuma muncul di HP */}
           <button onClick={() => setIsOpen(false)} className="md:hidden text-gray-500">
@@ -58,7 +58,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
               className={`flex items-center space-x-3 p-3 rounded-xl transition font-medium ${
                 location.pathname === menu.path 
                 ? 'bg-emerald-50 text-emerald-600' 
-                : 'text-gray-400 hover:bg-gray-50 hover:text-gray-600'
+                : 'text-white hover:bg-gray-50 hover:text-gray-600'
               }`}
             >
               {menu.icon}
