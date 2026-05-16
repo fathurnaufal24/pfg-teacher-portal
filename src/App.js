@@ -12,16 +12,23 @@ import ClassOffering from './ClassOffering';
 import Notifications from './Notifications';
 import ParentMeeting from './ParentMeeting';
 import Module from './Module'; // <--- PASTIIN ADA BARIS INI BANG!
+import Login from './Login'; // Import file Login
 
 function App() {
-  // Pastiin namanya setIsSidebarOpen (pake Is)
+  // State untuk ngecek user udah login atau belum
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Jika BELUM login, paksa tampilkan halaman Login saja
+  if (!isLoggedIn) {
+    return <Login onLogin={() => setIsLoggedIn(true)} />;
+  }
 
   return (
     <Router>
       <div className="flex min-h-screen bg-[#F3F4F9]">
         {/* Di sini juga ganti jadi setIsSidebarOpen biar sama */}
-        <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+        <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} onLogout={() => setIsLoggedIn(false)} />
 
         <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
           {/* Navbar khusus Mobile */}

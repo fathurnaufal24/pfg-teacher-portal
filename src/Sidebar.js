@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
+const Sidebar = ({ isOpen, setIsOpen, onLogout }) => { // Tambahin props ini
   const location = useLocation();
 
   const menus = [
@@ -67,7 +67,10 @@ const Sidebar = ({ isOpen, setIsOpen }) => { // Tambahin props ini
           ))}
         </nav>
 
-        <div className="pt-10 flex items-center space-x-3 p-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition">
+        <div 
+        onClick={onLogout} // <--- TAMBAHIN INI BANG
+        className="pt-10 flex items-center space-x-3 p-3 text-red-500 font-bold cursor-pointer hover:bg-red-50 rounded-xl transition"
+      >
           <LogOut size={20} />
           <span className="text-sm">Logout</span>
         </div>
